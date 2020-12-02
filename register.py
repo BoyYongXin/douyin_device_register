@@ -30,13 +30,13 @@ def get_system():
 system = get_system()
 
 nativate_path = os.path.join(os.path.join(os.path.dirname(os.path.abspath(__file__)),"nativates"),"nativate")
-
+print(nativate_path)
 
 jar_path = os.path.join(nativate_path,"unidbg.jar")
 
 jni_path = os.path.join(os.path.join(nativate_path,"prebuilt"),system)
 
-
+print(jni_path)
 os.chdir(nativate_path)
 
 mc_random = ["a","1","2","3","4","5","6","7","8","9"]
@@ -55,7 +55,12 @@ mc = get_random_mc()
 message = " ".join([gen_time,udid,openudid,mc])
 
 command = r"java -jar -Djna.library.path={} -Djava.library.path={} unidbg.jar {}".format(jni_path,jni_path,message)
+
+print(command)
+
 stdout,stderr = subprocess.Popen(command,stdout=subprocess.PIPE,stderr=subprocess.PIPE,shell=True).communicate()
+print(stdout.decode())
+print(stderr)
 hex_str = re.search(r'hex=([\s\S]*?)\nsize',stdout.decode()).group(1)
 
 def hexStr_to_str(hex_str):
