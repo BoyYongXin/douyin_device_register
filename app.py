@@ -66,4 +66,4 @@ def register():
     return jsonify(json.loads(response.read()))
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=8593)
+    app.run(host="0.0.0.0")
